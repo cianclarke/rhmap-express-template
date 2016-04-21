@@ -4,7 +4,7 @@ var express = require('express')
   , mbaasApi = require('fh-mbaas-api')
   , mbaasExpress = mbaasApi.mbaasExpress()
   , app = module.exports = express()
-  , counters = require('lib/middleware/request-counter');
+  , counters = require('./lib/middleware/request-counter');
 
 // Add our request counting middleware before all other routes
 app.use(counters.middleware);
@@ -17,7 +17,7 @@ app.use('/mbaas', mbaasExpress.mbaas);
 app.use(mbaasExpress.fhmiddleware());
 
 // Bind our routes
-require('lib/routes/users')(app);
+app.use('/users', require('./lib/routes/users'));
 
 // Expose our counters
 app.use('/stats', counters.router);

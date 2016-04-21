@@ -36,7 +36,7 @@ describe(__filename, function () {
     // app.set('env', 'test');
 
     // Initialise our express app with our router
-    proxyquire('./users.js', stubs)(app);
+    proxyquire('./users.js', stubs);
 
     // Initialise a supertest instance with our application
     request = supertest(app);
